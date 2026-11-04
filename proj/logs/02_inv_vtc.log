@@ -19,7 +19,8 @@ option SCALE: Scale is set to 1e-06 for instance and model parameters
 KBLOCK 1
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
- Reference value :  0.00000e+00 Reference value :  1.45800e+00
+Using SPARSE 1.3 as Direct Linear Solver
+ Reference value :  0.00000e+00
 No. of Data Rows : 1801
 vm                  =  8.370250e-01
 vil                 =  7.034968e-01
@@ -37,7 +38,8 @@ option SCALE: Scale is set to 1e-06 for instance and model parameters
 KBLOCK 1.5
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
- Reference value :  1.00200e+00
+Using SPARSE 1.3 as Direct Linear Solver
+ Reference value :  3.43000e-01
 No. of Data Rows : 1801
 vm                  =  8.576158e-01
 vil                 =  7.261858e-01
@@ -55,7 +57,8 @@ option SCALE: Scale is set to 1e-06 for instance and model parameters
 KBLOCK 2
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
- Reference value :  1.83000e-01 Reference value :  1.54100e+00
+Using SPARSE 1.3 as Direct Linear Solver
+ Reference value :  8.64000e-01
 No. of Data Rows : 1801
 vm                  =  8.721794e-01
 vil                 =  7.423111e-01
@@ -73,7 +76,8 @@ option SCALE: Scale is set to 1e-06 for instance and model parameters
 KBLOCK 2.5
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
- Reference value :  1.05500e+00
+Using SPARSE 1.3 as Direct Linear Solver
+ Reference value :  1.37600e+00
 No. of Data Rows : 1801
 vm                  =  8.836508e-01
 vil                 =  7.550534e-01
@@ -91,7 +95,8 @@ option SCALE: Scale is set to 1e-06 for instance and model parameters
 KBLOCK 3
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
- Reference value :  1.86000e-01 Reference value :  1.46600e+00
+Using SPARSE 1.3 as Direct Linear Solver
+ Reference value :  1.70400e+00
 No. of Data Rows : 1801
 vm                  =  8.931425e-01
 vil                 =  7.656110e-01

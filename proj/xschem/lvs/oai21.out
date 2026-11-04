@@ -1,0 +1,25 @@
+
+Subcircuit summary:
+Circuit 1: oai21                           |Circuit 2: OAI21                           
+-------------------------------------------|-------------------------------------------
+sky130_fd_pr__pfet_01v8 (3)                |sky130_fd_pr__pfet_01v8 (3)                
+sky130_fd_pr__nfet_01v8 (3)                |sky130_fd_pr__nfet_01v8 (3)                
+Number of devices: 6                       |Number of devices: 6                       
+Number of nets: 8                          |Number of nets: 8                          
+---------------------------------------------------------------------------------------
+Circuits match uniquely.
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: oai21                           |Circuit 2: OAI21                           
+-------------------------------------------|-------------------------------------------
+vdd                                        |vdd                                        
+gnd                                        |gnd                                        
+c                                          |c                                          
+a                                          |a                                          
+b                                          |b                                          
+y                                          |y                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes oai21 and OAI21 are equivalent.
+Circuits match uniquely.

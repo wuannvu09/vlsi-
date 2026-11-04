@@ -10,6 +10,7 @@ option SCALE: Scale is set to 1e-06 for instance and model parameters
 option SCALE: Scale is set to 1e-06 for instance and model parameters
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
+Using SPARSE 1.3 as Direct Linear Solver
 
 Initial Transient Solution
 --------------------------
@@ -32,14 +33,14 @@ va#branch                                    0
 vbuf#branch                       -1.09374e-09
 vdd#branch                        -5.46827e-10
 
- Reference value :  0.00000e+00 Reference value :  2.05850e-09 Reference value :  3.72450e-09 Reference value :  5.44650e-09 Reference value :  7.02350e-09 Reference value :  8.70650e-09
+ Reference value :  0.00000e+00 Reference value :  2.03950e-09 Reference value :  4.17550e-09 Reference value :  6.20250e-09 Reference value :  8.09850e-09 Reference value :  9.91350e-09
 No. of Data Rows : 10068
 tplh                =  5.663677e-11 targ=  3.109155e-09 trig=  3.052519e-09
 tphl                =  5.414234e-11 targ=  4.128793e-09 trig=  4.074651e-09
 tr                  =  4.830777e-11 targ=  3.139089e-09 trig=  3.090781e-09
 tf                  =  4.249608e-11 targ=  4.152430e-09 trig=  4.109934e-09
 voh                 =  1.800000e+00 at=  3.817500e-09
-vol                 =  4.438631e-07 at=  7.842800e-10
+vol                 =  4.438631e-07 at=  8.722800e-10
 tr_a                =  2.605686e-11 targ=  1.067491e-09 trig=  1.041434e-09
 Note: va: dc value used for op instead of transient time=0 value.
 Note: vb: dc value used for op instead of transient time=0 value.
@@ -50,21 +51,25 @@ iavg                =  -1.058877e-05 from=  4.000000e-09 to=  8.000500e-09
 pavg = 1.905979e-05
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
+Using SPARSE 1.3 as Direct Linear Solver
 
 No. of Data Rows : 1
 ist00 = -5.46827E-10
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
+Using SPARSE 1.3 as Direct Linear Solver
 
 No. of Data Rows : 1
 ist10 = -5.50318E-10
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
+Using SPARSE 1.3 as Direct Linear Solver
 
 No. of Data Rows : 1
 ist01 = -5.47644E-10
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
+Using SPARSE 1.3 as Direct Linear Solver
 
 No. of Data Rows : 1
 ist11 = -1.09169E-09

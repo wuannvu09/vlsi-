@@ -1,0 +1,9 @@
+** sch_path: /home/mrquan/VLSI/vlsi-/proj/xschem/nand2.sch
+.subckt nand2 a b y vdd gnd
+*.PININFO a:I b:I y:O vdd:B gnd:B
+XMPA y a vdd vdd sky130_fd_pr__pfet_01v8 L=0.15 W=3 nf=1 m=1
+XMPB y b vdd vdd sky130_fd_pr__pfet_01v8 L=0.15 W=3 nf=1 m=1
+XMNA y a net1 gnd sky130_fd_pr__nfet_01v8 L=0.15 W=2 nf=1 m=1
+XMNB net1 b gnd gnd sky130_fd_pr__nfet_01v8 L=0.15 W=2 nf=1 m=1
+.ends
+.end

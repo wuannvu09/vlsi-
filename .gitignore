@@ -1,3 +1,5 @@
 ﻿.venv/
 __pycache__/
 *.pyc
+proj/xschem/svg/
+.~lock.*#

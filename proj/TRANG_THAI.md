@@ -1,6 +1,26 @@
-# Trạng thái công việc (cập nhật 04/11/2026, làm trên Windows)
+# Trạng thái công việc (cập nhật 04/11/2026)
 
-Đọc file này cùng `CLAUDE.md` trước khi làm tiếp trên Ubuntu.
+Đọc file này cùng `CLAUDE.md` trước khi làm tiếp.
+
+## Đã làm trên Ubuntu 24.04 (04/11/2026)
+- Môi trường: ngspice-45.2, xschem 3.4.4, netgen-lvs 1.5.133 (apt); PDK sky130 `c6d73a35…` qua volare ở `~/.volare`.
+  `sim/pdk.spice` trỏ tới `~/.volare/sky130A/libs.tech/combined/sky130.lib.spice`.
+- `./run_all.sh`: `check_report.md` sạch; `results.json` khớp bản Windows ở cả 133 giá trị (sai lệch < 0,1 %).
+- Schematic Xschem (mục "Vẽ schematic Xschem", bước 1–9) đã xong, chạy lại bằng `./xschem/build.sh`:
+  - `gen_sch.py` sinh .sch/.sym (dùng symbol 3 chân `nfet3/pfet3_01v8`, body = vdd/gnd qua thuộc tính `body=`,
+    vẫn vào netlist). `xschemrc` chép từ PDK, đã thêm lại đường dẫn `libs.tech/xschem` của PDK.
+  - LVS netgen: inv, nand2, oai21, and2, ha14 đều khớp topology và W/L (đã thử cố ý sai W → netgen báo property error).
+  - Ảnh `figs/schematic_*.png` đã chèn vào slide 13; đã render PDF bằng LibreOffice, slide 13 không tràn chữ.
+- `setup.sh`: ghim phiên bản PDK, ưu tiên `combined/`.
+- Slide 16: stick diagram OAI21 vẽ bằng shape trong `build_slides.py` (poly nAB → A → B; pdiff Y|nAB|VDD|A|p1|B|Y;
+  ndiff Y|nAB|n1|A|GND|B|n1), bố cục 4 cell thu gọn phía trên.
+
+## Còn lại (người dùng tự làm)
+- Tên nhóm và GVHD (biến `lines` trong `build_slides.py`).
+- Testbench Xschem (tb_*.sch) chưa vẽ: mô phỏng vẫn dùng `sim/*.spice`; nếu cần nộp thì thêm sau.
+
+---
+Phần dưới là ghi chú từ lần làm trên Windows.
 
 ## Đã xong (mục 1–6 và tiêu chí kiểm tra trong CLAUDE.md)
 - Mô phỏng đủ 5 netlist, `logs/check_report.md` sạch, mọi tiêu chí số liệu đạt. Chọn được k = 3 (VM = 0,893 V).

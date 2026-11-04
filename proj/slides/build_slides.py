@@ -268,7 +268,7 @@ s=new('Schematic trên công cụ','Vẽ theo kiểu phân cấp giúp kiểm tr
 img(s,0.4,1.25,4.5,4.5,'schematic_and.png','[Chèn schematic cổng AND: NAND2 + INV, ghi W/L trên từng transistor]')
 img(s,5.1,1.25,4.5,4.5,'schematic_ha.png','[Chèn schematic Half Adder phân cấp: symbol NAND2, INV, OAI21]')
 tb(s,0.4,5.8,4.5,0.4,['Cổng AND · 6 transistor'],size=13,color=GREY); tb(s,5.1,5.8,4.5,0.4,['Half Adder · 14 transistor'],size=13,color=GREY)
-cite(s,'Ảnh chụp từ Xschem, PDK sky130',GREY)
+cite(s,'Xuất từ Xschem, PDK sky130; LVS (netgen) khớp với netlist mô phỏng sim/cells_sky130.spice',GREY)
 
 # ---------- 14 euler
 s=new('Euler path chung cho mạng kéo lên và kéo xuống',"Logic graph, Euler path: L11 slide 411–412 trang 1–2; ví dụ x = (a + b·c)' slide 414–415 trang 3. Sắp xếp lại đầu vào: slide 434 trang 13.")
@@ -301,17 +301,42 @@ card(s,lx,3.55,3.25,2.6,['Poly xếp theo Euler path A → B.','pdiff: VDD | A |
 cite(s,'Hình do nhóm vẽ theo quy ước stick diagram (ECE4740 – Lecture 11 / page 2, 3)')
 
 # ---------- 16 floorplan
-s=new('Bố cục stick diagram Half Adder','Độ rộng các ô tỉ lệ với số transistor theo chiều ngang. Hình do nhóm vẽ.')
-rect(s,0.4,1.25,9.2,0.38,fill=METAL,line=None,shape=MSO_SHAPE.RECTANGLE); tb(s,0.5,1.25,6,0.38,['VDD (metal, dùng chung)'],size=12,color=WHITE,bold=True,anchor=MSO_ANCHOR.MIDDLE)
+s=new('Bố cục Half Adder và stick diagram OAI21',
+ 'Trên: bốn cell một hàng, độ rộng ô tỉ lệ số transistor theo chiều ngang. Dưới: stick diagram OAI21, poly theo Euler path nAB → A → B (slide 14). '
+ 'PUN: Y –nAB→ VDD –A→ p1 –B→ Y, nút p1 nối tiếp nên không cần contact. PDN: Y –nAB→ n1 –A→ GND –B→ n1, hai đầu n1 nối bằng metal đi phía trên ndiff '
+ 'để không cắt dây GND. Hình do nhóm vẽ.')
+# --- floorplan (thu gon)
+rect(s,0.4,1.22,9.2,0.3,fill=METAL,line=None,shape=MSO_SHAPE.RECTANGLE); tb(s,0.5,1.22,8,0.3,['VDD (metal, dùng chung cho cả 4 cell)'],size=11,color=WHITE,bold=True,anchor=MSO_ANCHOR.MIDDLE)
 x=0.4
 for f,n,o in [(4,'NAND2','A → B'),(2,'INV','nAB'),(5,'OAI21','nAB → A → B'),(2,'INV','XNOR')]:
     w=f/13*(9.2-0.45)
-    rect(s,x,1.75,w,1.25,fill=WHITE,line=BLUE,lw=2); tb(s,x+0.08,1.8,w-0.16,1.15,[(n,{'size':15,'bold':True}),('Poly: '+o,{'size':12})])
+    rect(s,x,1.58,w,0.72,fill=PINK if n=='OAI21' else WHITE,line=BLUE,lw=2)
+    tb(s,x+0.08,1.6,w-0.16,0.68,[(n,{'size':13,'bold':True}),('Poly: '+o,{'size':11})],space=0)
     x+=w+0.15
-rect(s,0.4,3.12,9.2,0.38,fill=METAL,line=None,shape=MSO_SHAPE.RECTANGLE); tb(s,0.5,3.12,6,0.38,['GND (metal, dùng chung)'],size=12,color=WHITE,bold=True,anchor=MSO_ANCHOR.MIDDLE)
-for k,t in enumerate(['Bốn cell đặt thành một hàng, chung ray VDD và GND.','Mỗi cell có Euler path riêng nên diffusion trong cell liền mạch; giữa các cell có khe ngắt.','[Chèn stick diagram chi tiết OAI21 vẽ bằng draw.io]']):
-    card(s,0.4+k*3.1,3.8,2.95,2.3,[t],size=13)
-cite(s,'(ECE4740 – Lecture 11 / page 2, 3): quy ước stick diagram')
+rect(s,0.4,2.36,9.2,0.3,fill=METAL,line=None,shape=MSO_SHAPE.RECTANGLE); tb(s,0.5,2.36,8,0.3,['GND (metal, dùng chung) · diffusion liền mạch trong mỗi cell, có khe ngắt giữa các cell'],size=11,color=WHITE,bold=True,anchor=MSO_ANCHOR.MIDDLE)
+# --- stick diagram OAI21: poly nAB (x=200), A (420), B (660); contact o x = 100, 300, 540, 760
+sc=0.0057; X0,Y0=0.4,2.85
+rect(s,X0,Y0,1000*sc,580*sc,fill=WHITE,line=LINE,shape=MSO_SHAPE.RECTANGLE)
+for spec in [(20,20,960,40,METAL),(20,520,960,40,METAL),       # ray VDD, GND
+ (70,120,720,90,PD),(70,360,720,90,ND),                        # pdiff, ndiff (mot dai lien)
+ (190,95,20,380,POLY),(410,95,20,380,POLY),(650,95,20,380,POLY),
+ (290,60,20,105,METAL),                                        # VDD -> contact pdiff giua nAB va A
+ (90,165,20,240,METAL),(750,165,20,90,METAL),(90,245,810,20,METAL),  # Y: pdiff trai + pdiff phai + ndiff trai -> dau ra
+ (290,315,20,90,METAL),(750,315,20,90,METAL),(290,305,480,20,METAL), # n1: noi hai dau ndiff, di tren ndiff
+ (530,405,20,115,METAL)]:                                      # GND <- contact ndiff giua A va B
+    R(*spec)
+for cx,cy in [(100,165),(300,165),(760,165),(100,405),(300,405),(540,405),(760,405)]:
+    R(cx-12,cy-12,24,24,DARK)
+lab(28,22,'VDD',WHITE); lab(28,522,'GND',WHITE)
+lab(212,455,'nAB',POLY); lab(432,455,'A',POLY,0.3); lab(672,455,'B',POLY,0.3)
+lab(905,232,'Y',BLUE,0.3); lab(785,318,'n1',BLUE,0.4); lab(520,128,'p1',DARK,0.4)
+lx=6.3
+for k,(col,name) in enumerate([(METAL,'Metal 1'),(POLY,'Poly (cổng)'),(PD,'p-diffusion (PMOS)'),(ND,'n-diffusion (NMOS)'),(DARK,'Contact')]):
+    rect(s,lx,2.9+k*0.32,0.22,0.22,fill=col,line=None,shape=MSO_SHAPE.RECTANGLE); tb(s,lx+0.32,2.86+k*0.32,2.9,0.3,[name],size=12)
+card(s,lx,4.55,3.3,1.6,['Poly theo Euler path **nAB → A → B**.',
+ ('pdiff: Y|nAB|VDD|A|p1|B|Y',{'font':MONO,'size':10.5}),('ndiff: Y|nAB|n1|A|GND|B|n1',{'font':MONO,'size':10.5}),
+ 'p1 không cần contact; n1 nối bằng metal phía trên ndiff.'],size=11.5,accent=RED)
+cite(s,'Hình do nhóm vẽ theo quy ước stick diagram (ECE4740 – Lecture 11 / page 2, 3)')
 
 # ---------- 17 testbench
 s=new('Thiết lập testbench','Mốc 50% và 10–90%: L5 trang 3. Delay theo mẫu đầu vào: L11 slide 422–423 trang 7. Sườn vào qua INV đệm: L7 slide 247–249 trang 12–13. Ghi nhiệt độ: L8 slide 255 trang 3.')

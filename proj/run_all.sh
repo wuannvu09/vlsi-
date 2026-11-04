@@ -13,5 +13,9 @@ run 02_inv_vtc
 $PY scripts/analyze.py --vtc
 for f in 01_iv 03_and 04_ha14 05_ha18; do run $f; done
 $PY scripts/analyze.py --all
+# Schematic Xschem + LVS + anh slide 13 (bo qua neu chua cai xschem/netgen)
+if command -v xschem >/dev/null && { command -v netgen-lvs >/dev/null || command -v netgen >/dev/null; }; then
+  echo ">> xschem/build.sh"; ./xschem/build.sh || echo "   (schematic/LVS loi, xem xschem/lvs/)"
+fi
 $PY slides/build_slides.py
 echo "Ket qua: results.json | Kiem tra: logs/check_report.md | Slide: output/BTL_VLSI_AND_HalfAdder_HUST.pptx"

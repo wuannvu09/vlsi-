@@ -12,19 +12,28 @@ ngspice -v 2>/dev/null | head -3 || true
 . .venv/bin/activate
 pip install -q -r requirements.txt
 
+# uu tien libs.tech/combined (ban ngspice/ in nhieu loi include nfet_20v0, vo hai nhung log ban)
+find_lib(){
+  local f
+  for sub in combined ngspice; do
+    f=$(find "$1" -path "*sky130A/libs.tech/$sub/sky130.lib.spice" 2>/dev/null | head -1)
+    [ -n "$f" ] && { echo "$f"; return; }
+  done
+}
+
 # Tim PDK co san (open_pdks, IIC-OSIC-TOOLS, volare)
 LIB=""
 for d in "$PDK_ROOT" /foss/pdks /usr/local/share/pdk /usr/share/pdk "$HOME/.volare" /opt; do
   [ -n "$d" ] && [ -d "$d" ] || continue
-  LIB=$(find "$d" -name sky130.lib.spice -path '*sky130A*' 2>/dev/null | head -1)
+  LIB=$(find_lib "$d")
   [ -n "$LIB" ] && break
 done
 if [ -z "$LIB" ]; then
-  echo "Chua co PDK sky130 -> tai bang volare (vai tram MB)..."
-  VER=$(volare ls-remote --pdk sky130 2>/dev/null | grep -oE '[0-9a-f]{40}' | head -1)
-  [ -n "$VER" ] || { echo "Khong lay duoc danh sach phien ban PDK (kiem tra mang)."; exit 1; }
+  # Phien ban PDK co dinh de so lieu tai lap duoc (khop bang tham chieu trong TRANG_THAI.md)
+  VER=c6d73a35f524070e85faff4a6a9eef49553ebc2b
+  echo "Chua co PDK sky130 -> tai bang volare, phien ban $VER (vai tram MB)..."
   volare enable --pdk sky130 "$VER"
-  LIB=$(find "$HOME/.volare" -name sky130.lib.spice -path '*sky130A*' | head -1)
+  LIB=$(find_lib "$HOME/.volare")
 fi
 [ -n "$LIB" ] || { echo "Khong tim thay sky130.lib.spice"; exit 1; }
 echo ".lib $LIB tt" > sim/pdk.spice

@@ -1,0 +1,11 @@
+** sch_path: /home/mrquan/VLSI/vlsi-/proj/xschem/oai21.sch
+.subckt oai21 a b c y vdd gnd
+*.PININFO a:I b:I c:I y:O vdd:B gnd:B
+XMPC y c vdd vdd sky130_fd_pr__pfet_01v8 L=0.15 W=3 nf=1 m=1
+XMPA net1 a vdd vdd sky130_fd_pr__pfet_01v8 L=0.15 W=6 nf=1 m=1
+XMPB y b net1 vdd sky130_fd_pr__pfet_01v8 L=0.15 W=6 nf=1 m=1
+XMNC y c net2 gnd sky130_fd_pr__nfet_01v8 L=0.15 W=2 nf=1 m=1
+XMNA net2 a gnd gnd sky130_fd_pr__nfet_01v8 L=0.15 W=2 nf=1 m=1
+XMNB net2 b gnd gnd sky130_fd_pr__nfet_01v8 L=0.15 W=2 nf=1 m=1
+.ends
+.end

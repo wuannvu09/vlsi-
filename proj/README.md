@@ -10,6 +10,15 @@ Ubuntu hoặc WSL (Windows), có mạng. VS Code mở thư mục này (với WSL
 
 Nếu dùng Claude Code trong VS Code: chỉ cần nhắn *"Làm theo CLAUDE.md"*.
 
-## Phần cần tự làm bằng giao diện
-- Vẽ schematic trên Xschem, chụp lưu thành `figs/schematic_and.png`, `figs/schematic_ha.png`, rồi chạy task 3.
+## Schematic Xschem (slide 13)
+Cần thêm `sudo apt-get install -y xschem netgen-lvs librsvg2-bin`. Chạy task **4. Schematic Xschem + LVS + anh slide 13**
+(hoặc `./xschem/build.sh` rồi task 3):
+- `xschem/gen_sch.py` sinh `inv/nand2/oai21.sch` (mức transistor, thứ tự Euler của slide 14), symbol `.sym`,
+  `and2.sch`, `ha14.sch`; kích thước lấy từ `results.json`.
+- `xschem/lvs.sh` xuất netlist từ Xschem và so với `sim/cells_sky130.spice` bằng netgen (topology + W/L),
+  ghi kết quả vào `logs/check_report.md`. Ảnh chỉ được xuất khi cả 5 cell khớp.
+- Ảnh: `figs/schematic_and.png`, `figs/schematic_ha.png` (slide 13), kèm `schematic_inv/nand2/oai21.png` để nộp.
+- Mở xem/sửa: `cd xschem && xschem ha14.sch` (PDK_ROOT tự suy ra nếu PDK nằm ở `~/.volare`).
+
+## Phần cần tự làm
 - Điền tên nhóm, GVHD ở slide bìa (sửa trong `slides/build_slides.py`, biến `lines`).

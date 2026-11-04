@@ -1,0 +1,95 @@
+
+Subcircuit summary:
+Circuit 1: nand2                           |Circuit 2: NAND2                           
+-------------------------------------------|-------------------------------------------
+sky130_fd_pr__pfet_01v8 (2)                |sky130_fd_pr__pfet_01v8 (2)                
+sky130_fd_pr__nfet_01v8 (2)                |sky130_fd_pr__nfet_01v8 (2)                
+Number of devices: 4                       |Number of devices: 4                       
+Number of nets: 6                          |Number of nets: 6                          
+---------------------------------------------------------------------------------------
+Circuits match uniquely.
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: nand2                           |Circuit 2: NAND2                           
+-------------------------------------------|-------------------------------------------
+vdd                                        |vdd                                        
+b                                          |b                                          
+a                                          |a                                          
+y                                          |y                                          
+gnd                                        |gnd                                        
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes nand2 and NAND2 are equivalent.
+
+Subcircuit summary:
+Circuit 1: inv                             |Circuit 2: INV                             
+-------------------------------------------|-------------------------------------------
+sky130_fd_pr__pfet_01v8 (1)                |sky130_fd_pr__pfet_01v8 (1)                
+sky130_fd_pr__nfet_01v8 (1)                |sky130_fd_pr__nfet_01v8 (1)                
+Number of devices: 2                       |Number of devices: 2                       
+Number of nets: 4                          |Number of nets: 4                          
+---------------------------------------------------------------------------------------
+Circuits match uniquely.
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: inv                             |Circuit 2: INV                             
+-------------------------------------------|-------------------------------------------
+out                                        |out                                        
+in                                         |in                                         
+vdd                                        |vdd                                        
+gnd                                        |gnd                                        
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes inv and INV are equivalent.
+
+Subcircuit summary:
+Circuit 1: oai21                           |Circuit 2: OAI21                           
+-------------------------------------------|-------------------------------------------
+sky130_fd_pr__pfet_01v8 (3)                |sky130_fd_pr__pfet_01v8 (3)                
+sky130_fd_pr__nfet_01v8 (3)                |sky130_fd_pr__nfet_01v8 (3)                
+Number of devices: 6                       |Number of devices: 6                       
+Number of nets: 8                          |Number of nets: 8                          
+---------------------------------------------------------------------------------------
+Circuits match uniquely.
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: oai21                           |Circuit 2: OAI21                           
+-------------------------------------------|-------------------------------------------
+vdd                                        |vdd                                        
+gnd                                        |gnd                                        
+c                                          |c                                          
+a                                          |a                                          
+b                                          |b                                          
+y                                          |y                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes oai21 and OAI21 are equivalent.
+
+Subcircuit summary:
+Circuit 1: ha14                            |Circuit 2: HA14                            
+-------------------------------------------|-------------------------------------------
+nand2 (1)                                  |NAND2 (1)                                  
+inv (2)                                    |INV (2)                                    
+oai21 (1)                                  |OAI21 (1)                                  
+Number of devices: 4                       |Number of devices: 4                       
+Number of nets: 8                          |Number of nets: 8                          
+---------------------------------------------------------------------------------------
+Circuits match uniquely.
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: ha14                            |Circuit 2: HA14                            
+-------------------------------------------|-------------------------------------------
+carry                                      |carry                                      
+sum                                        |sum                                        
+vdd                                        |vdd                                        
+gnd                                        |gnd                                        
+a                                          |a                                          
+b                                          |b                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes ha14 and HA14 are equivalent.
+Circuits match uniquely.

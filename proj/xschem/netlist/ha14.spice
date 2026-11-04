@@ -1,0 +1,45 @@
+** sch_path: /home/mrquan/VLSI/vlsi-/proj/xschem/ha14.sch
+.subckt ha14 a b sum carry vdd gnd
+*.PININFO a:I b:I sum:O carry:O vdd:B gnd:B
+X1 a b net1 vdd gnd nand2
+X2 net1 carry vdd gnd inv
+X3 a b net1 net2 vdd gnd oai21
+X4 net2 sum vdd gnd inv
+.ends
+
+* expanding   symbol:  nand2.sym # of pins=5
+** sym_path: /home/mrquan/VLSI/vlsi-/proj/xschem/nand2.sym
+** sch_path: /home/mrquan/VLSI/vlsi-/proj/xschem/nand2.sch
+.subckt nand2 a b y vdd gnd
+*.PININFO a:I b:I y:O vdd:B gnd:B
+XMPA y a vdd vdd sky130_fd_pr__pfet_01v8 L=0.15 W=3 nf=1 m=1
+XMPB y b vdd vdd sky130_fd_pr__pfet_01v8 L=0.15 W=3 nf=1 m=1
+XMNA y a net1 gnd sky130_fd_pr__nfet_01v8 L=0.15 W=2 nf=1 m=1
+XMNB net1 b gnd gnd sky130_fd_pr__nfet_01v8 L=0.15 W=2 nf=1 m=1
+.ends
+
+
+* expanding   symbol:  inv.sym # of pins=4
+** sym_path: /home/mrquan/VLSI/vlsi-/proj/xschem/inv.sym
+** sch_path: /home/mrquan/VLSI/vlsi-/proj/xschem/inv.sch
+.subckt inv in out vdd gnd
+*.PININFO in:I out:O vdd:B gnd:B
+XMP out in vdd vdd sky130_fd_pr__pfet_01v8 L=0.15 W=3 nf=1 m=1
+XMN out in gnd gnd sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 m=1
+.ends
+
+
+* expanding   symbol:  oai21.sym # of pins=6
+** sym_path: /home/mrquan/VLSI/vlsi-/proj/xschem/oai21.sym
+** sch_path: /home/mrquan/VLSI/vlsi-/proj/xschem/oai21.sch
+.subckt oai21 a b c y vdd gnd
+*.PININFO a:I b:I c:I y:O vdd:B gnd:B
+XMPC y c vdd vdd sky130_fd_pr__pfet_01v8 L=0.15 W=3 nf=1 m=1
+XMPA net1 a vdd vdd sky130_fd_pr__pfet_01v8 L=0.15 W=6 nf=1 m=1
+XMPB y b net1 vdd sky130_fd_pr__pfet_01v8 L=0.15 W=6 nf=1 m=1
+XMNC y c net2 gnd sky130_fd_pr__nfet_01v8 L=0.15 W=2 nf=1 m=1
+XMNA net2 a gnd gnd sky130_fd_pr__nfet_01v8 L=0.15 W=2 nf=1 m=1
+XMNB net2 b gnd gnd sky130_fd_pr__nfet_01v8 L=0.15 W=2 nf=1 m=1
+.ends
+
+.end

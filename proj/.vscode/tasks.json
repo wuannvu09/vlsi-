@@ -3,6 +3,7 @@
   "tasks": [
     { "label": "1. Cai dat (ngspice + sky130)", "type": "shell", "command": "./setup.sh", "problemMatcher": [] },
     { "label": "2. Chay mo phong + sinh slide", "type": "shell", "command": "./run_all.sh", "problemMatcher": [], "group": { "kind": "build", "isDefault": true } },
-    { "label": "3. Chi sinh lai slide", "type": "shell", "command": ". .venv/bin/activate; python3 slides/build_slides.py", "problemMatcher": [] }
+    { "label": "3. Chi sinh lai slide", "type": "shell", "command": ". .venv/bin/activate; python3 slides/build_slides.py", "problemMatcher": [] },
+    { "label": "4. Schematic Xschem + LVS + anh slide 13", "type": "shell", "command": "./xschem/build.sh && . .venv/bin/activate && python3 slides/build_slides.py", "problemMatcher": [] }
   ]
 }

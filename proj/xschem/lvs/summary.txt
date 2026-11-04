@@ -1,0 +1,5 @@
+LVS inv: khop (topology + W/L)
+LVS nand2: khop (topology + W/L)
+LVS oai21: khop (topology + W/L)
+LVS and2: khop (topology + W/L)
+LVS ha14: khop (topology + W/L)
