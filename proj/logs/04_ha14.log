@@ -1,0 +1,82 @@
+
+Note: Compatibility modes selected: hs a
+
+
+Circuit: * 04_ha14.spice - testbench half adder 14t (slide 18, 19, 20)
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                        1.8
+vbuf                                       1.8
+as                                           0
+bs                                           0
+an1                                        1.8
+a                                  4.43863e-07
+bn1                                        1.8
+b                                  4.43863e-07
+xdut.nab                                   1.8
+xdut.x1.n1                           0.0515449
+carry                              4.43863e-07
+xdut.xnor                                  1.8
+xdut.x3.p1                                 1.8
+xdut.x3.n1                             1.44617
+sum                                4.43863e-07
+vb#branch                                    0
+va#branch                                    0
+vbuf#branch                       -1.09374e-09
+vdd#branch                         -1.0993e-09
+
+ Reference value :  0.00000e+00 Reference value :  1.52150e-09 Reference value :  2.98750e-09 Reference value :  4.47950e-09 Reference value :  6.01150e-09 Reference value :  7.48050e-09 Reference value :  9.02150e-09
+No. of Data Rows : 10068
+tplh_c              =  7.940197e-11 targ=  3.150430e-09 trig=  3.071028e-09
+tphl_c              =  7.155629e-11 targ=  4.162299e-09 trig=  4.090743e-09
+tplh_s              =  8.731695e-11 targ=  1.157839e-09 trig=  1.070522e-09
+tphl_s              =  1.119898e-10 targ=  3.183018e-09 trig=  3.071028e-09
+tr_s                =  5.034042e-11 targ=  1.188227e-09 trig=  1.137886e-09
+tf_s                =  4.492783e-11 targ=  3.207215e-09 trig=  3.162287e-09
+tr_c                =  5.280599e-11 targ=  3.181704e-09 trig=  3.128898e-09
+tf_c                =  4.337027e-11 targ=  4.186028e-09 trig=  4.142658e-09
+voh_s               =  1.799999e+00 at=  1.899500e-09
+vol_s               =  3.054450e-07 at=  3.508500e-09
+voh_c               =  1.800000e+00 at=  3.864500e-09
+vol_c               =  4.438631e-07 at=  6.742800e-10
+tr_a                =  6.107330e-11 targ=  1.107086e-09 trig=  1.046013e-09
+tf_a                =  5.769152e-11 targ=  2.124345e-09 trig=  2.066654e-09
+iavg                =  -2.682696e-05 from=  4.000000e-09 to=  8.000500e-09
+pavg = 4.828853e-05
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+ Reference value :  0.00000e+00Note: va: dc value used for op instead of transient time=0 value.
+Note: vb: dc value used for op instead of transient time=0 value.
+Note: vb: dc value used for op instead of transient time=0 value.
+Note: va: dc value used for op instead of transient time=0 value.
+
+No. of Data Rows : 1
+ist00 = -1.0993E-09
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+ist10 = -1.34005E-09
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+ist01 = -1.69929E-09
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+ist11 = -1.63934E-09
+pstatic = 2.600091e-09
+Note: Simulation executed from .control section 

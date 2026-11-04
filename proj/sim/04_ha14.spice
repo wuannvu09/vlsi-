@@ -1,0 +1,68 @@
+* 04_ha14.spice - Testbench Half Adder 14T (slide 18, 19, 20)
+.include pdk.spice
+.include params.spice
+.include cells_sky130.spice
+.temp 27
+.option savecurrents
+Vdd  vdd  0 {VDD}
+* Nguon rieng cho tang dem -> cong suat chi tinh cho mach can do
+Vbuf vbuf 0 {VDD}
+* Moi 4n: 0-1n 00 | 1-2n A=1 B=0 | 2-3n A=0 B=1 | 3-4n 11
+VA as 0 PULSE(0 {VDD} 1n 20p 20p 1n 2n)
+VB bs 0 PULSE(0 {VDD} 2n 20p 20p 2n 4n)
+XBA1 as an1 vbuf 0 INV
+XBA2 an1 a  vbuf 0 INV
+XBB1 bs bn1 vbuf 0 INV
+XBB2 bn1 b  vbuf 0 INV
+XDUT a b sum carry vdd 0 HA14
+CS sum 0 {CL}
+CC carry 0 {CL}
+.control
+tran 1p 10n
+wrdata ../data/wave_ha14.txt v(a) v(b) v(carry) v(sum)
+meas tran tplh_c trig v(a) val=0.9 rise=2 targ v(carry) val=0.9 rise=1
+meas tran tphl_c trig v(a) val=0.9 fall=2 targ v(carry) val=0.9 fall=1
+meas tran tplh_s trig v(a) val=0.9 rise=1 targ v(sum) val=0.9 rise=1
+meas tran tphl_s trig v(a) val=0.9 td=2.5n rise=1 targ v(sum) val=0.9 td=2.5n fall=1
+meas tran tr_s trig v(sum) val=0.18 rise=1 targ v(sum) val=1.62 rise=1
+meas tran tf_s trig v(sum) val=1.62 td=2.5n fall=1 targ v(sum) val=0.18 td=2.5n fall=1
+meas tran tr_c trig v(carry) val=0.18 rise=1 targ v(carry) val=1.62 rise=1
+meas tran tf_c trig v(carry) val=1.62 fall=1 targ v(carry) val=0.18 fall=1
+meas tran voh_s max v(sum) from=1.5n to=1.9n
+meas tran vol_s min v(sum) from=3.5n to=3.9n
+meas tran voh_c max v(carry) from=3.5n to=3.9n
+meas tran vol_c min v(carry) from=0.5n to=0.9n
+* Suon vao thuc te tai dau vao DUT (sau 2 INV dem)
+meas tran tr_a trig v(a) val=0.18 rise=1 targ v(a) val=1.62 rise=1
+meas tran tf_a trig v(a) val=1.62 fall=1 targ v(a) val=0.18 fall=1
+meas tran iavg avg i(Vdd) from=4n to=8n
+let pavg = -iavg*1.8
+print pavg
+* Cong suat tinh: diem lam viec DC (op) o tung to hop dau vao 00, 10, 01, 11, roi lay trung binh.
+* Khong do bang cua so trong tran vi dong qua do (nut giua cua chuoi noi tiep) chua tat han.
+foreach st 00 10 01 11
+  if $st = 00
+    alter VA dc=0
+    alter VB dc=0
+  end
+  if $st = 10
+    alter VA dc=1.8
+    alter VB dc=0
+  end
+  if $st = 01
+    alter VA dc=0
+    alter VB dc=1.8
+  end
+  if $st = 11
+    alter VA dc=1.8
+    alter VB dc=1.8
+  end
+  op
+  let ix = i(Vdd)
+  set ist$st = "$&ix"
+  echo "ist$st = $&ix"
+end
+let pstatic = -($ist00+$ist10+$ist01+$ist11)/4*1.8
+print pstatic
+.endc
+.end

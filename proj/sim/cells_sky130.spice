@@ -1,0 +1,65 @@
+* ============================================================
+* cells_sky130.spice - Thu vien cell static CMOS, PDK SkyWater 130nm
+* Thiet bi 1.8 V: sky130_fd_pr__nfet_01v8 / sky130_fd_pr__pfet_01v8
+* Don vi W, L tinh bang micromet (thu vien sky130 dat san scale = 1u)
+* Kich thuoc theo slide "Tinh kich thuoc transistor":
+*   INV  : NMOS Wn, PMOS k*Wn
+*   NAND2: NMOS noi tiep 2Wn, PMOS song song k*Wn
+*   OAI21: NMOS 2Wn (nAB sat dau ra), PMOS A,B noi tiep 2k*Wn, nAB k*Wn
+*   AOI22: NMOS 2Wn, PMOS 2k*Wn (chi dung cho phuong an 18T)
+* ============================================================
+
+.subckt INV in out vdd gnd
+XMP out in vdd vdd sky130_fd_pr__pfet_01v8 L={L} W={k*Wn} nf=1
+XMN out in gnd gnd sky130_fd_pr__nfet_01v8 L={L} W={Wn}   nf=1
+.ends INV
+
+* NAND2: PDN  Y - A - n1 - B - GND  (Euler A -> B)
+.subckt NAND2 a b y vdd gnd
+XMPA y  a vdd vdd sky130_fd_pr__pfet_01v8 L={L} W={k*Wn} nf=1
+XMPB y  b vdd vdd sky130_fd_pr__pfet_01v8 L={L} W={k*Wn} nf=1
+XMNA y  a n1  gnd sky130_fd_pr__nfet_01v8 L={L} W={2*Wn} nf=1
+XMNB n1 b gnd gnd sky130_fd_pr__nfet_01v8 L={L} W={2*Wn} nf=1
+.ends NAND2
+
+.subckt AND2 a b y vdd gnd
+X1 a b nab vdd gnd NAND2
+X2 nab y vdd gnd INV
+.ends AND2
+
+* OAI21: Y = ((a+b)*c)'   c = nAB dat sat dau ra (Euler nAB -> A -> B)
+.subckt OAI21 a b c y vdd gnd
+XMPC y  c vdd vdd sky130_fd_pr__pfet_01v8 L={L} W={k*Wn}   nf=1
+XMPA p1 a vdd vdd sky130_fd_pr__pfet_01v8 L={L} W={2*k*Wn} nf=1
+XMPB y  b p1  vdd sky130_fd_pr__pfet_01v8 L={L} W={2*k*Wn} nf=1
+XMNC y  c n1  gnd sky130_fd_pr__nfet_01v8 L={L} W={2*Wn}   nf=1
+XMNA n1 a gnd gnd sky130_fd_pr__nfet_01v8 L={L} W={2*Wn}   nf=1
+XMNB n1 b gnd gnd sky130_fd_pr__nfet_01v8 L={L} W={2*Wn}   nf=1
+.ends OAI21
+
+* AOI22: Y = (a*b + c*d)'
+.subckt AOI22 a b c d y vdd gnd
+XMPA p1 a vdd vdd sky130_fd_pr__pfet_01v8 L={L} W={2*k*Wn} nf=1
+XMPB p1 b vdd vdd sky130_fd_pr__pfet_01v8 L={L} W={2*k*Wn} nf=1
+XMPC y  c p1  vdd sky130_fd_pr__pfet_01v8 L={L} W={2*k*Wn} nf=1
+XMPD y  d p1  vdd sky130_fd_pr__pfet_01v8 L={L} W={2*k*Wn} nf=1
+XMNA y  a n1  gnd sky130_fd_pr__nfet_01v8 L={L} W={2*Wn}   nf=1
+XMNB n1 b gnd gnd sky130_fd_pr__nfet_01v8 L={L} W={2*Wn}   nf=1
+XMNC y  c n2  gnd sky130_fd_pr__nfet_01v8 L={L} W={2*Wn}   nf=1
+XMND n2 d gnd gnd sky130_fd_pr__nfet_01v8 L={L} W={2*Wn}   nf=1
+.ends AOI22
+
+.subckt HA14 a b sum carry vdd gnd
+X1 a b nab vdd gnd NAND2
+X2 nab carry vdd gnd INV
+X3 a b nab xnor vdd gnd OAI21
+X4 xnor sum vdd gnd INV
+.ends HA14
+
+* HA18: Sum = (A*B + A'*B')'
+.subckt HA18 a b sum carry vdd gnd
+X1 a b carry vdd gnd AND2
+X2 a an vdd gnd INV
+X3 b bn vdd gnd INV
+X4 a b an bn sum vdd gnd AOI22
+.ends HA18

@@ -1,0 +1,38 @@
+* 01_iv.spice - Khao sat PDK sky130: ID-VDS, ID-VGS (slide 7)
+.include pdk.spice
+.include params.spice
+.include cells_sky130.spice
+.temp 27
+.option savecurrents
+Vdsn dn 0 0
+Vgsn gn 0 0
+XMN dn gn 0 0 sky130_fd_pr__nfet_01v8 L={L} W={Wn} nf=1
+Vs  vs 0 {VDD}
+Vdsp vs dp 0
+Vgsp vs gp 0
+XMP dp gp vs vs sky130_fd_pr__pfet_01v8 L={L} W={Wn} nf=1
+.control
+dc Vdsn 0 1.8 0.01 Vgsn 0 1.8 0.3
+let idn = abs(i(Vdsn))
+wrdata ../data/nmos_idvds.txt idn
+dc Vdsp 0 1.8 0.01 Vgsp 0 1.8 0.3
+let idp = abs(i(Vdsp))
+wrdata ../data/pmos_idvds.txt idp
+alter Vdsn dc=0.05
+dc Vgsn 0 1.8 0.005
+let idn = abs(i(Vdsn))
+wrdata ../data/nmos_idvgs.txt idn
+alter Vdsp dc=0.05
+dc Vgsp 0 1.8 0.005
+let idp = abs(i(Vdsp))
+wrdata ../data/pmos_idvgs.txt idp
+alter Vdsn dc=1.8
+alter Vgsn dc=1.8
+alter Vdsp dc=1.8
+alter Vgsp dc=1.8
+op
+let idsat_n = abs(i(Vdsn))
+let idsat_p = abs(i(Vdsp))
+print idsat_n idsat_p
+.endc
+.end

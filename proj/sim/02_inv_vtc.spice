@@ -1,0 +1,28 @@
+* 02_inv_vtc.spice - VTC inverter tham chieu, quet k = Wp/Wn (slide 8)
+.include pdk.spice
+.include params.spice
+.include cells_sky130.spice
+.temp 27
+.option savecurrents
+Vdd vdd 0 {VDD}
+Vin in 0 0
+X1 in out vdd 0 INV
+.control
+foreach kk 1 1.5 2 2.5 3
+  alterparam k = $kk
+  reset
+* KBLOCK in truoc meas: analyze.py gan cac gia tri phia sau cho k nay
+  echo "KBLOCK $kk"
+  dc Vin 0 1.8 1m
+  let dvout = deriv(v(out))
+  meas dc vm  find v(in) when v(out)=v(in)
+  meas dc vil find v(in) when dvout=-1 cross=1
+  meas dc vih find v(in) when dvout=-1 cross=2
+* at=1.8 roi ra ngoai khoang quet do lam tron -> dung max/min
+  meas dc voh max v(out)
+  meas dc vol min v(out)
+  set fn = vtc_k{$kk}.txt
+  wrdata ../data/$fn v(out)
+end
+.endc
+.end

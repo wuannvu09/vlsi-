@@ -1,0 +1,2 @@
+* Tham so thiet ke. scripts/analyze.py --vtc ghi de k sau khi quet VTC.
+.param VDD=1.8 L=0.15 Wn=1 k=3 CL=10f

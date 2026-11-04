@@ -1,0 +1,101 @@
+
+Note: Compatibility modes selected: hs a
+
+
+Circuit: * 02_inv_vtc.spice - vtc inverter tham chieu, quet k = wp/wn (slide 8)
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+Reset re-loads circuit * 02_inv_vtc.spice - vtc inverter tham chieu, quet k = wp/wn (slide 8)
+
+Circuit: * 02_inv_vtc.spice - vtc inverter tham chieu, quet k = wp/wn (slide 8)
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+KBLOCK 1
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+ Reference value :  0.00000e+00 Reference value :  1.45800e+00
+No. of Data Rows : 1801
+vm                  =  8.370250e-01
+vil                 =  7.034968e-01
+vih                 =  9.394829e-01
+voh                 =  1.800000e+00 at=  0.000000e+00
+vol                 =  2.606332e-07 at=  1.800000e+00
+Reset re-loads circuit * 02_inv_vtc.spice - vtc inverter tham chieu, quet k = wp/wn (slide 8)
+
+Circuit: * 02_inv_vtc.spice - vtc inverter tham chieu, quet k = wp/wn (slide 8)
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+KBLOCK 1.5
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+ Reference value :  1.00200e+00
+No. of Data Rows : 1801
+vm                  =  8.576158e-01
+vil                 =  7.261858e-01
+vih                 =  9.682065e-01
+voh                 =  1.800000e+00 at=  0.000000e+00
+vol                 =  3.014067e-07 at=  1.800000e+00
+Reset re-loads circuit * 02_inv_vtc.spice - vtc inverter tham chieu, quet k = wp/wn (slide 8)
+
+Circuit: * 02_inv_vtc.spice - vtc inverter tham chieu, quet k = wp/wn (slide 8)
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+KBLOCK 2
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+ Reference value :  1.83000e-01 Reference value :  1.54100e+00
+No. of Data Rows : 1801
+vm                  =  8.721794e-01
+vil                 =  7.423111e-01
+vih                 =  9.888796e-01
+voh                 =  1.800000e+00 at=  0.000000e+00
+vol                 =  3.459373e-07 at=  1.800000e+00
+Reset re-loads circuit * 02_inv_vtc.spice - vtc inverter tham chieu, quet k = wp/wn (slide 8)
+
+Circuit: * 02_inv_vtc.spice - vtc inverter tham chieu, quet k = wp/wn (slide 8)
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+KBLOCK 2.5
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+ Reference value :  1.05500e+00
+No. of Data Rows : 1801
+vm                  =  8.836508e-01
+vil                 =  7.550534e-01
+vih                 =  1.005295e+00
+voh                 =  1.800000e+00 at=  0.000000e+00
+vol                 =  3.939908e-07 at=  1.800000e+00
+Reset re-loads circuit * 02_inv_vtc.spice - vtc inverter tham chieu, quet k = wp/wn (slide 8)
+
+Circuit: * 02_inv_vtc.spice - vtc inverter tham chieu, quet k = wp/wn (slide 8)
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+KBLOCK 3
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+ Reference value :  1.86000e-01 Reference value :  1.46600e+00
+No. of Data Rows : 1801
+vm                  =  8.931425e-01
+vil                 =  7.656110e-01
+vih                 =  1.018932e+00
+voh                 =  1.800000e+00 at=  0.000000e+00
+vol                 =  4.438631e-07 at=  1.800000e+00
+Note: Simulation executed from .control section 

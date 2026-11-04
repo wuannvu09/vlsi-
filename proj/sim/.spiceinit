@@ -1,0 +1,5 @@
+set ngbehavior=hsa
+set ng_nomodcheck
+set num_threads=4
+set wr_singlescale
+set wr_vecnames
